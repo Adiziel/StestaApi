@@ -18,12 +18,12 @@ class Card(models.Model):
     task_name = models.CharField(max_length=25, null=False, blank=False)
     task_progress = models.IntegerField(default=0)
     task_time = models.DateTimeField(auto_now=True, null=False, blank=False)
-    task_deadline = models.DateTimeField(auto_now=False, null=True)
+    task_deadline = models.DateTimeField(auto_now=False, null=False, blank=False)
     task_urgency = models.CharField(max_length=6,choices=TASK_URGENCY_CHOICES, default='low')
     task_status = models.BooleanField(default=False)
 
     def __str__(self):
-        return (f'task {self.task_name} by {self.task_owner}')
+        return (f'Task "{self.task_name}" by "{self.task_owner}"')
     
 
 # subcard model
@@ -37,4 +37,4 @@ class SubCard(models.Model):
         unique_together = ('subtask_name', 'task_name',)
 
     def str(self):
-        return (f'subtask {self.subtask_name} in task {self.task_name.task_name} by {self.task_name.task_owner}')
+        return (f'Subtask "{self.subtask_name}" in task "{self.task_name.task_name}" by "{self.task_name.task_owner}"')
