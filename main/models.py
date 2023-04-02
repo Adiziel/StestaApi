@@ -17,7 +17,7 @@ class Card(models.Model):
     taskid = models.UUIDField(primary_key=True, default=uuid.uuid1) 
     task_name = models.CharField(max_length=25, null=False, blank=False)
     task_progress = models.IntegerField(default=0)
-    task_time = models.DateTimeField(auto_now=True, null=False, blank=False)
+    task_created = models.DateTimeField(auto_now=True, null=False, blank=False)
     task_deadline = models.DateTimeField(auto_now=False, null=False, blank=False)
     task_urgency = models.CharField(max_length=6,choices=TASK_URGENCY_CHOICES, default='low')
     task_status = models.BooleanField(default=False)
